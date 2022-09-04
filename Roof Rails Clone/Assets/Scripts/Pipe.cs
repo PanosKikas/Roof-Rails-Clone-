@@ -18,9 +18,17 @@ public class Pipe : MonoBehaviour
 
     public float recenterDelay = 1.25f;
 
+    public PlayerMovement PlayerMovement;
+
+    public LayerMask RailLayerMask;
+
+    private bool onRails = false;
+    private Rigidbody rigidBody;
+
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
+        rigidBody = GetComponent<Rigidbody>();
     }
 
     public void Extend()
@@ -45,14 +53,14 @@ public class Pipe : MonoBehaviour
             dir = new Vector3(cutPoint.x, min.y, min.z) - min;
             spawnPosition = min + (dir/2.0f);
         }
-             
+
         float cutScaleY = dir.magnitude * 0.5f;
         if (cutScaleY <= 0.09f)
         {
             return;
         }
 
-        GameObject cutInstance  = Instantiate(PipePrefab, spawnPosition, transform.rotation);
+        GameObject cutInstance = Instantiate(PipePrefab, spawnPosition, transform.rotation);
         cutInstance.transform.localScale = new Vector3(transform.localScale.x, cutScaleY, transform.localScale.z);
         cutInstance.GetComponent<Rigidbody>().AddForce(-1 * cutInstance.transform.forward * cutForce, ForceMode.Impulse);
         float remainingScaleY = transform.localScale.y - cutScaleY;
@@ -85,6 +93,11 @@ public class Pipe : MonoBehaviour
 
     private void Update()
     {
+        if (onRails)
+        {
+            CheckIfLostBalance();
+        }
+
         if (!needRecenter)
         {
             return;
@@ -98,5 +111,43 @@ public class Pipe : MonoBehaviour
         }
 
         transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0f, transform.localPosition.y, transform.localPosition.z), Time.deltaTime * recenterSpeed);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log(other.gameObject.name);
+    }
+
+    public void StartSlide()
+    {
+        onRails = true;
+    }
+
+    public void StopSlide()
+    {
+        onRails = false;
+    }
+
+    void CheckIfLostBalance()
+    {
+        if(gameObject.transform.parent == null)
+        {
+            return;
+        }
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 3f, RailLayerMask);
+
+        if (colliders.Length == 1)
+        {
+            gameObject.transform.SetParent(null);
+            Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+            StopSlide();
+        }
+
+        foreach (var collider in colliders)
+        {
+            Debug.Log(collider.gameObject.name);
+        }
+
     }
 }

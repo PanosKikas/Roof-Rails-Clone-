@@ -10,17 +10,31 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float horizontalSpeed = 3f;
 
+    private float currentForwardSpeed;
+
     [SerializeField]
-    private float forwardSpeed = 8f;
+    private float forwardNormalSpeed = 8f;
+
+    [SerializeField]
+    private float targetForwardSpeed = 14f;
 
     private Animator animator = null;
 
     private bool awaitingFirstTouch = true;
+    private bool isSpeedLerping = false;
+
+    [SerializeField]
+    private float boostLerpSpeed = 1.5f;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        currentForwardSpeed = forwardNormalSpeed;
     }
 
     // Start is called before the first frame update
@@ -30,6 +44,18 @@ public class PlayerMovement : MonoBehaviour
         awaitingFirstTouch = false;
     }
 
+    public void BoostSpeed()
+    {
+        isSpeedLerping = true;
+        targetForwardSpeed = currentForwardSpeed * 1.5f;
+    }
+
+    public void ResetToNormalSpeed()
+    {
+        isSpeedLerping = true;
+        targetForwardSpeed = forwardNormalSpeed;
+    }
+
     private void Update()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -37,6 +63,17 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             StartMoving();
+        }
+
+        if (isSpeedLerping)
+        {
+            if (Mathf.Abs(targetForwardSpeed - currentForwardSpeed) <= 0.01f)
+            {
+                currentForwardSpeed = targetForwardSpeed;
+                isSpeedLerping = false;
+                return;
+            }
+            currentForwardSpeed = Mathf.Lerp(currentForwardSpeed, targetForwardSpeed, Time.deltaTime * boostLerpSpeed);
         }
     }
 
@@ -48,6 +85,6 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        rb.position += new Vector3(horizontalInput * horizontalSpeed, 0, forwardSpeed) * Time.fixedDeltaTime;
+        rb.position += new Vector3(horizontalInput * horizontalSpeed, 0, currentForwardSpeed) * Time.fixedDeltaTime;
     }
 }
