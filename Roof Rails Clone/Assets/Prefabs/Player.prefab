@@ -1121,7 +1121,7 @@ GameObject:
   - component: {fileID: 7547077398688635950}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1249,9 +1249,10 @@ GameObject:
   - component: {fileID: 7547077397716833829}
   - component: {fileID: 7547077397716833828}
   - component: {fileID: 7547077397716833835}
+  - component: {fileID: 649779098}
   m_Layer: 0
-  m_Name: Cylinder
-  m_TagString: Untagged
+  m_Name: Pipe
+  m_TagString: Pipe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1287,7 +1288,7 @@ MeshRenderer:
   m_GameObject: {fileID: 7547077397716833833}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 0
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -1333,6 +1334,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &649779098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7547077397716833833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1014bb2193ac98a48aa3720b3252553f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExtensionAmount: 0.1
+  PipePrefab: {fileID: 0}
 --- !u!1 &7547768798503631209
 GameObject:
   m_ObjectHideFlags: 0

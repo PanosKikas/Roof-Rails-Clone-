@@ -9,9 +9,9 @@ public class ExtensionCollectible : MonoBehaviour
     {
         if (IsPlayer(other))
         {
-            PipeController pipeController = other.GetComponent<PipeController>();
-            Assert.IsNotNull(pipeController, "No pipe controller component found in player");
-            pipeController.Extend();
+            Pipe pipe = other.GetComponentInChildren<Pipe>();
+            Assert.IsNotNull(pipe, "No pipe component found in player object.");
+            pipe.Extend();
             Destroy(gameObject);
         }
     }
