@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator = null;
 
+    private bool awaitingFirstTouch = true;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -22,21 +24,30 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void StartMoving()
     {
-        animator.SetBool("Grounded", true);
         animator.SetFloat("MoveSpeed", 1);
+        awaitingFirstTouch = false;
     }
 
     private void Update()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartMoving();
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.position += new Vector3(horizontalInput * horizontalSpeed, 0, forwardSpeed) * Time.fixedDeltaTime;
+        if (awaitingFirstTouch)
+        {
+            return;
+        }
 
+        rb.position += new Vector3(horizontalInput * horizontalSpeed, 0, forwardSpeed) * Time.fixedDeltaTime;
     }
 }

@@ -90,8 +90,9 @@ public class Pipe : MonoBehaviour
             return;
         }
 
-        if (transform.localPosition.x == 0f)
+        if (Mathf.Abs(transform.localPosition.x) <= 0.001f)
         {
+            transform.localPosition = new Vector3(0f, transform.localPosition.y, transform.localPosition.z);
             needRecenter = false;
             return;
         }

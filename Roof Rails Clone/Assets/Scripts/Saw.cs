@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SawBehaviour : MonoBehaviour
+public class Saw : MonoBehaviour
 {
     MeshRenderer meshRenderer;
     private void Awake()
