@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,10 +24,11 @@ public class Pipe : MonoBehaviour
 
     public LayerMask RailLayerMask;
 
-    private bool onRails = false;
     private Rigidbody rigidBody;
 
     private List<Rail> collidingRails = new List<Rail>();
+
+    public event Action OnExtensionCollected;
 
     private void Awake()
     {
@@ -50,12 +52,14 @@ public class Pipe : MonoBehaviour
         {
             return;
         }
+
         collidingRails.Remove(rail);
     }
 
     public void Extend()
     {
         transform.localScale += Vector3.up * ExtensionAmount;
+        OnExtensionCollected?.Invoke();
     }
 
     public void Cut(Vector3 cutPoint)
@@ -65,6 +69,7 @@ public class Pipe : MonoBehaviour
         Vector3 max = new Vector3(meshRenderer.bounds.max.x, center.y, center.z);
         Vector3 dir;
         Vector3 spawnPosition;
+
         if (cutPoint.x - transform.position.x >= 0)
         {
             dir = max - new Vector3(cutPoint.x, center.y, center.z);
@@ -84,9 +89,8 @@ public class Pipe : MonoBehaviour
 
         GameObject cutInstance = Instantiate(PipePrefab, spawnPosition, transform.rotation);
         cutInstance.transform.localScale = new Vector3(transform.localScale.x, cutScaleY, transform.localScale.z);
-        cutInstance.GetComponent<Rigidbody>().AddForce(-1 * cutInstance.transform.forward * cutForce, ForceMode.Impulse);
         float remainingScaleY = transform.localScale.y - cutScaleY;
-
+        float cutTargetRotation;
         Vector3 newDir;
         Vector3 newPos;
 
@@ -94,16 +98,19 @@ public class Pipe : MonoBehaviour
         {
             newDir = new Vector3(cutPoint.x, center.y, center.z) - min;
             newPos = min + (newDir / 2.0f);
+            cutTargetRotation = -90f;
         }
         else
         {
             newDir = max - new Vector3(cutPoint.x, max.y, max.z);
             newPos = cutPoint + newDir/2.0f;
+            cutTargetRotation = 90f;
         }
 
+        cutInstance.GetComponent<PipeCut>().RotateTo(cutTargetRotation);
+        Destroy(cutInstance.gameObject, 1.5f);
         transform.position = newPos;
         transform.localScale = new Vector3(transform.localScale.x, remainingScaleY, transform.localScale.z);
-        Debug.LogError("Min:" + min + "Direction: " +  dir + "Spawn position: " + spawnPosition + " scale Y:" + cutScaleY);
         StartCoroutine(Recenter());
     }
 
@@ -115,6 +122,11 @@ public class Pipe : MonoBehaviour
 
     private void Update()
     {
+        if (transform.parent == null)
+        {
+            return;
+        }
+
         if (collidingRails.Any())
         {
             CheckIfLostBalance();
@@ -135,28 +147,13 @@ public class Pipe : MonoBehaviour
         transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0f, transform.localPosition.y, transform.localPosition.z), Time.deltaTime * recenterSpeed);
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        Debug.Log(other.gameObject.name);
-    }
-
-    public void StartSlide()
-    {
-        onRails = true;
-    }
-
-    public void StopSlide()
-    {
-        onRails = false;
-    }
-
     void CheckIfLostBalance()
     {
         if (collidingRails.Count == 1)
         {
             gameObject.transform.SetParent(null);
             Rigidbody rb = gameObject.AddComponent<Rigidbody>();
-            StopSlide();
+            collidingRails.Clear();        
         }
     }
 }

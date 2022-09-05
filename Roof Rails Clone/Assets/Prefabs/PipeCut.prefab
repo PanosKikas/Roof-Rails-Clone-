@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 306904421336422714}
   - component: {fileID: 306904421336422709}
   - component: {fileID: -5238611274535987924}
+  - component: {fileID: -4393722229081463044}
   m_Layer: 0
   m_Name: PipeCut
   m_TagString: Pipe
@@ -113,3 +114,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &-4393722229081463044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306904421336422711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dddcf52aabe13543b3168b10fd26895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

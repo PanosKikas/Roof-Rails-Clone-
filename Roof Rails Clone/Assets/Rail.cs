@@ -18,7 +18,7 @@ public class Rail : MonoBehaviour
         Pipe pipe = collision.collider.GetComponent<Pipe>();
         if (pipe)
         {
-            pipe.AddRail(this);
+            pipe.RemoveRail(this);
         }
     }
 }
