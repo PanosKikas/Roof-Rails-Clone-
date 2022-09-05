@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    private void StartMoving()
+    public void StartMoving()
     {
         animator.SetFloat("MoveSpeed", 1);
         awaitingFirstTouch = false;
@@ -58,12 +58,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-
-        if (Input.GetMouseButtonDown(0))
+        if (awaitingFirstTouch)
         {
-            StartMoving();
+            return;
         }
+
+        horizontalInput = Input.GetAxisRaw("Horizontal");
 
         if (isSpeedLerping)
         {
