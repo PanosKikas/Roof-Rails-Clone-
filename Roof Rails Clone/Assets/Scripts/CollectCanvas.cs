@@ -21,7 +21,7 @@ public class CollectCanvas : MonoBehaviour
     {
         Sequence mySequence = DOTween.Sequence();
         // Add a movement tween at the beginning
-        mySequence.Append(transform.DOMoveY(transform.position.y + 1.8f, 1f));
+        mySequence.Append(transform.DOMoveY(transform.position.y + 2.5f, 1f));
         mySequence.Append(canvasGroup.DOFade(0, 0.3f));
         mySequence.Play();
     }

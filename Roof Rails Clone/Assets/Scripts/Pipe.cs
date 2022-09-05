@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Pipe : MonoBehaviour
@@ -25,10 +26,31 @@ public class Pipe : MonoBehaviour
     private bool onRails = false;
     private Rigidbody rigidBody;
 
+    private List<Rail> collidingRails = new List<Rail>();
+
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         rigidBody = GetComponent<Rigidbody>();
+    }
+
+    public void AddRail(Rail rail)
+    {
+        if (collidingRails.Contains(rail))
+        {
+            return;
+        }
+
+        collidingRails.Add(rail);
+    }
+
+    public void RemoveRail(Rail rail)
+    {
+        if (!collidingRails.Contains(rail))
+        {
+            return;
+        }
+        collidingRails.Remove(rail);
     }
 
     public void Extend()
@@ -93,7 +115,7 @@ public class Pipe : MonoBehaviour
 
     private void Update()
     {
-        if (onRails)
+        if (collidingRails.Any())
         {
             CheckIfLostBalance();
         }
@@ -130,24 +152,11 @@ public class Pipe : MonoBehaviour
 
     void CheckIfLostBalance()
     {
-        if(gameObject.transform.parent == null)
-        {
-            return;
-        }
-
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 3f, RailLayerMask);
-
-        if (colliders.Length == 1)
+        if (collidingRails.Count == 1)
         {
             gameObject.transform.SetParent(null);
             Rigidbody rb = gameObject.AddComponent<Rigidbody>();
             StopSlide();
         }
-
-        foreach (var collider in colliders)
-        {
-            Debug.Log(collider.gameObject.name);
-        }
-
     }
 }

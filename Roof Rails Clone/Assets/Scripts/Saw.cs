@@ -20,5 +20,10 @@ public class Saw : MonoBehaviour
             Debug.Log("Collision point " + collisionPoint);
             pipe.Cut(collisionPoint);
         }
+
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("DIE");
+        }
     }
 }

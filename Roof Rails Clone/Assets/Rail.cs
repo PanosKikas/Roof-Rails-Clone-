@@ -9,7 +9,16 @@ public class Rail : MonoBehaviour
         Pipe pipe = collision.collider.GetComponent<Pipe>();
         if (pipe)
         {
-            pipe.StartSlide();
+            pipe.AddRail(this);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        Pipe pipe = collision.collider.GetComponent<Pipe>();
+        if (pipe)
+        {
+            pipe.AddRail(this);
         }
     }
 }

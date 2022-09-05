@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 public class PipeExtensionCollectible : MonoBehaviour
 {
     public GameObject CollectCanvasUI;
-    public float CanvasOffset = 1.5f;
+    public float CanvasOffset = 2.5f;
 
     private void OnTriggerEnter(Collider other)
     {
