@@ -10,20 +10,28 @@ public class Saw : MonoBehaviour
         meshRenderer = GetComponentInChildren<MeshRenderer>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        Pipe pipe = other.GetComponent<Pipe>();
-        if (pipe)
+        if (!GameManager.Instance.IsGameRunning)
         {
-            Vector3 collisionPoint = other.ClosestPoint(transform.position);
-            collisionPoint += Vector3.right * meshRenderer.bounds.extents.x;
-            Debug.Log("Collision point " + collisionPoint);
-            pipe.Cut(collisionPoint);
+            return;
         }
 
-        if (other.CompareTag("Player"))
+        Pipe pipe = collision.collider.GetComponent<Pipe>();
+        if (pipe)
         {
-            Debug.Log("DIE");
+            Transform playerTransform = pipe.GetComponentInParent<PlayerMovement>().transform;
+            bool rightCut = transform.position.x - playerTransform.position.x > 0;
+            Vector3 collisionPoint = collision.collider.ClosestPoint(transform.position);
+            collisionPoint += Vector3.right * meshRenderer.bounds.extents.x;
+            Debug.Log("Collision point " + collisionPoint);
+            pipe.Cut(collisionPoint, rightCut);
+        }
+
+        if (collision.collider.CompareTag("Player"))
+        {
+            collision.collider.GetComponent<PlayerMovement>().Stop();
+            GameManager.Instance.EndGame();
         }
     }
 }

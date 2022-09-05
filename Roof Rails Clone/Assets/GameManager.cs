@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public bool IsGameRunning { get; private set; } = false;
 
     public PlayerMovement PlayerMovement;
+    public Pipe pipe;
 
     private void Awake()
     {
@@ -32,5 +33,10 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         IsGameRunning = false;
+        if (pipe.transform.parent != null)
+        {
+            pipe.transform.SetParent(null);
+            Rigidbody rb = pipe.gameObject.AddComponent<Rigidbody>();
+        }
     }
 }

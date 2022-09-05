@@ -56,6 +56,12 @@ public class PlayerMovement : MonoBehaviour
         targetForwardSpeed = forwardNormalSpeed;
     }
 
+    public void Stop()
+    {
+        awaitingFirstTouch = true;
+        animator.SetFloat("MoveSpeed", 0f);
+    }
+
     private void Update()
     {
         if (awaitingFirstTouch)

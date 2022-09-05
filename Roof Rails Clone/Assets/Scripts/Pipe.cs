@@ -20,12 +20,6 @@ public class Pipe : MonoBehaviour
 
     public float recenterDelay = 1.25f;
 
-    public PlayerMovement PlayerMovement;
-
-    public LayerMask RailLayerMask;
-
-    private Rigidbody rigidBody;
-
     private List<Rail> collidingRails = new List<Rail>();
 
     public event Action OnExtensionCollected;
@@ -33,7 +27,6 @@ public class Pipe : MonoBehaviour
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
-        rigidBody = GetComponent<Rigidbody>();
     }
 
     public void AddRail(Rail rail)
@@ -62,7 +55,7 @@ public class Pipe : MonoBehaviour
         OnExtensionCollected?.Invoke();
     }
 
-    public void Cut(Vector3 cutPoint)
+    public void Cut(Vector3 cutPoint, bool isRightCut)
     {
         Vector3 center = meshRenderer.bounds.center;
         Vector3 min = new Vector3(meshRenderer.bounds.min.x, center.y, center.z);
@@ -70,7 +63,7 @@ public class Pipe : MonoBehaviour
         Vector3 dir;
         Vector3 spawnPosition;
 
-        if (cutPoint.x - transform.position.x >= 0)
+        if (isRightCut)
         {
             dir = max - new Vector3(cutPoint.x, center.y, center.z);
             spawnPosition = new Vector3(cutPoint.x, center.y, center.z) + (dir / 2.0f);
@@ -94,7 +87,7 @@ public class Pipe : MonoBehaviour
         Vector3 newDir;
         Vector3 newPos;
 
-        if (cutPoint.x - transform.position.x >= 0)
+        if (isRightCut)
         {
             newDir = new Vector3(cutPoint.x, center.y, center.z) - min;
             newPos = min + (newDir / 2.0f);
