@@ -1207,7 +1207,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalSpeed: 3
   forwardNormalSpeed: 4
-  targetForwardSpeed: 14
   boostLerpSpeed: 1.5
 --- !u!114 &1201214599
 MonoBehaviour:
@@ -1221,6 +1220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a189c8940b43641bd17217f7b46383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetBoostSpeed: 5
 --- !u!1 &7546785189787173129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,10 +1368,6 @@ MonoBehaviour:
   recenterSpeed: 10
   needRecenter: 0
   recenterDelay: 1
-  PlayerMovement: {fileID: 0}
-  RailLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!1 &7547768798503631209
 GameObject:
   m_ObjectHideFlags: 0

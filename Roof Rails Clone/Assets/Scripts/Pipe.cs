@@ -150,7 +150,7 @@ public class Pipe : MonoBehaviour
             
             if (!GameManager.Instance.PastFinishLine)
             {
-                GameManager.Instance.EndGame();
+                GameManager.Instance.GameOver();
             }
         }
     }

@@ -1,3 +1,5 @@
+using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +9,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public bool IsGameRunning { get; private set; } = false;
+
+    [HideInInspector]
     public bool PastFinishLine = false;
 
     public PlayerMovement PlayerMovement;
     public Pipe pipe;
+
+    public event Action OnGameOver;
 
     private void Awake()
     {
@@ -32,15 +38,22 @@ public class GameManager : MonoBehaviour
         PlayerMovement.StartMoving();
     }
 
+    public void GameOver()
+    {
+        EndGame();
+        OnGameOver?.Invoke();
+    }
+    
     public void EndGame()
     {
-        Debug.LogError("END GAME");
+        PlayerMovement.enabled = false;
         IsGameRunning = false;
         if (pipe.transform.parent != null)
         {
             pipe.transform.SetParent(null);
             Rigidbody rb = pipe.gameObject.AddComponent<Rigidbody>();
         }
+        Camera.main.GetComponent<CinemachineBrain>().enabled = false;
     }
 
     public void RestartLevel()

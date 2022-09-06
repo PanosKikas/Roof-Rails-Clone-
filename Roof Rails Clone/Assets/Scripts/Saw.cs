@@ -30,8 +30,10 @@ public class Saw : MonoBehaviour
 
         if (collision.collider.CompareTag("Player"))
         {
+            
             collision.collider.GetComponent<PlayerMovement>().Stop();
-            GameManager.Instance.EndGame();
+            collision.collider.GetComponent<Rigidbody>().AddForce(collision.collider.transform.forward * -1f * 2f, ForceMode.Impulse);
+            GameManager.Instance.GameOver();
         }
     }
 }
