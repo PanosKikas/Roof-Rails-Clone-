@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody rb;
-    private float horizontalInput = 0f;
 
     [SerializeField]
     private float horizontalSpeed = 3f;
@@ -25,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float boostLerpSpeed = 3f;
 
+    private PlayerInputManager inputManager;
+
+    private float horizontalInput = 0f;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -34,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         currentForwardSpeed = forwardNormalSpeed;
+        inputManager = GetComponent<PlayerInputManager>();
+        if (inputManager == null)
+        {
+            Assert.IsNotNull(inputManager, "No input manager found in player object!");
+        }
     }
 
     // Start is called before the first frame update
@@ -68,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        horizontalInput = Input.GetAxisRaw("Horizontal");
+        horizontalInput = inputManager.HorizontalInput;
 
         if (isSpeedLerping)
         {
@@ -90,6 +99,6 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        rb.position += new Vector3(horizontalInput * horizontalSpeed, 0, currentForwardSpeed) * Time.fixedDeltaTime;
+        rb.velocity = new Vector3(horizontalInput * horizontalSpeed, rb.velocity.y, currentForwardSpeed);
     }
 }
