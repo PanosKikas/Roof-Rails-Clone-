@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public Pipe pipe;
 
     public event Action OnGameOver;
+    public event Action<int> OnGameWon;
 
     private void Awake()
     {
@@ -43,8 +44,15 @@ public class GameManager : MonoBehaviour
         EndGame();
         OnGameOver?.Invoke();
     }
+
+    public void WinGame(int multiplier)
+    {
+        PlayerMovement.Stop();
+        EndGame();
+        OnGameWon?.Invoke(multiplier);
+    }
     
-    public void EndGame()
+    private void EndGame()
     {
         PlayerMovement.enabled = false;
         IsGameRunning = false;

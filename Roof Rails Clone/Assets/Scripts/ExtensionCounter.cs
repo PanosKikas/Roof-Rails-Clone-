@@ -6,7 +6,7 @@ using UnityEngine;
 public class ExtensionCounter : MonoBehaviour
 {
     public TextMeshProUGUI CounterText;
-    private int count = 0;
+    public int Count { get; private set; } = 0;
     public Pipe pipe;
 
     private void Start()
@@ -14,15 +14,9 @@ public class ExtensionCounter : MonoBehaviour
         pipe.OnExtensionCollected += Increment;
     }
 
-    public void Reset()
-    {
-        count = 0;
-        CounterText.text = "0";
-    }
-
     public void Increment()
     {
-        ++count;
-        CounterText.text = count.ToString();
+        ++Count;
+        CounterText.text = Count.ToString();
     }
 }

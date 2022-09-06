@@ -67,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
     public void Stop()
     {
         awaitingFirstTouch = true;
+        rb.velocity = Vector3.zero;
         animator.SetFloat("MoveSpeed", 0f);
     }
 
