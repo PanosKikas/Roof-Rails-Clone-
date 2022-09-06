@@ -15,8 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float forwardNormalSpeed = 8f;
 
-    [SerializeField]
-    private float targetForwardSpeed = 14f;
+    private float targetForwardSpeed;
 
     private Animator animator = null;
 
@@ -24,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isSpeedLerping = false;
 
     [SerializeField]
-    private float boostLerpSpeed = 1.5f;
+    private float boostLerpSpeed = 3f;
 
     private void Awake()
     {
@@ -44,10 +43,10 @@ public class PlayerMovement : MonoBehaviour
         awaitingFirstTouch = false;
     }
 
-    public void BoostSpeed()
+    public void BoostSpeed(float targetSpeed)
     {
         isSpeedLerping = true;
-        targetForwardSpeed = currentForwardSpeed * 1.5f;
+        targetForwardSpeed = targetSpeed;
     }
 
     public void ResetToNormalSpeed()

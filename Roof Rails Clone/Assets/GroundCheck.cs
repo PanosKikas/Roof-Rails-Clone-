@@ -7,6 +7,7 @@ public class GroundCheck : MonoBehaviour
     private Animator animator;
     public bool IsGrounded { get; private set; } = true;
 
+    public float TargetBoostSpeed = 5;
     private PlayerMovement playerMovement;
 
     private void Awake()
@@ -31,12 +32,7 @@ public class GroundCheck : MonoBehaviour
         {
             animator.SetBool("Grounded", false);
             IsGrounded = false;
-            playerMovement.BoostSpeed();
-        }
-
-        if (collision.collider.CompareTag("Rail"))
-        {
-            playerMovement.BoostSpeed();
+            playerMovement.BoostSpeed(TargetBoostSpeed);
         }
     }
 }

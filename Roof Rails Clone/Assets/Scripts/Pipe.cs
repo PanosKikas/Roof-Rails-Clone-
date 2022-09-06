@@ -147,6 +147,11 @@ public class Pipe : MonoBehaviour
             gameObject.transform.SetParent(null);
             Rigidbody rb = gameObject.AddComponent<Rigidbody>();
             collidingRails.Clear();        
+            
+            if (!GameManager.Instance.PastFinishLine)
+            {
+                GameManager.Instance.EndGame();
+            }
         }
     }
 }

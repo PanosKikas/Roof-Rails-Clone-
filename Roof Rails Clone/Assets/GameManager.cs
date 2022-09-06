@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
     public bool IsGameRunning { get; private set; } = false;
+    public bool PastFinishLine = false;
 
     public PlayerMovement PlayerMovement;
     public Pipe pipe;
@@ -27,11 +27,13 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         IsGameRunning = true;
+        PastFinishLine = false;
         PlayerMovement.StartMoving();
     }
 
     public void EndGame()
     {
+        Debug.LogError("END GAME");
         IsGameRunning = false;
         if (pipe.transform.parent != null)
         {
