@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
 
     private float horizontalInput = 0f;
 
+    public Pipe pipe;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -68,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
     {
         awaitingFirstTouch = true;
         rb.velocity = Vector3.zero;
+        rb.isKinematic = true;
         animator.SetFloat("MoveSpeed", 0f);
     }
 

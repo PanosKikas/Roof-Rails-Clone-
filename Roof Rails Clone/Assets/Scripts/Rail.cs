@@ -16,7 +16,13 @@ public class Rail : MonoBehaviour
             PlayerMovement playerMovement = pipe.GetComponentInParent<PlayerMovement>();
             SparksParticles.gameObject.SetActive(true);
             playerMovement?.BoostSpeed(BoostSpeed);
-        }     
+        }
+
+        if (collision.collider.CompareTag("Player") && collision.collider.transform.position.y > transform.position.y)
+        {
+            Pipe childPipe = collision.collider.GetComponentInChildren<Pipe>();
+            childPipe.DetachFromPlayer();
+        }
     }
 
     private void OnCollisionStay(Collision collision)

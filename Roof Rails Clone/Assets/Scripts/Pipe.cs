@@ -21,6 +21,9 @@ public class Pipe : MonoBehaviour
     public float recenterDelay = 1.25f;
 
     private List<Rail> collidingRails = new List<Rail>();
+    private int rightRailCounter = 0;
+    private int leftRailCounter = 0;
+    public PlayerMovement PlayerMovement;
 
     public event Action OnExtensionCollected;
 
@@ -35,8 +38,23 @@ public class Pipe : MonoBehaviour
         {
             return;
         }
+        bool isOnTheRight = IsOnTheRightSide(rail);
+
+        if (isOnTheRight)
+        {
+            ++rightRailCounter;
+        }
+        else
+        {
+            ++leftRailCounter;
+        }
 
         collidingRails.Add(rail);
+    }
+
+    private bool IsOnTheRightSide(Rail rail)
+    {
+        return rail.transform.position.x - PlayerMovement.gameObject.transform.position.x > 0 ? true : false;
     }
 
     public void RemoveRail(Rail rail)
@@ -44,6 +62,15 @@ public class Pipe : MonoBehaviour
         if (!collidingRails.Contains(rail))
         {
             return;
+        }
+
+        if (IsOnTheRightSide(rail))
+        {
+            --rightRailCounter;
+        }
+        else
+        {
+            --leftRailCounter;
         }
 
         collidingRails.Remove(rail);
@@ -120,9 +147,9 @@ public class Pipe : MonoBehaviour
             return;
         }
 
-        if (collidingRails.Any())
+        if (collidingRails.Any() && !BalancedOnRails())
         {
-            CheckIfLostBalance();
+            DetachFromPlayer();
         }
 
         if (!needRecenter)
@@ -140,18 +167,25 @@ public class Pipe : MonoBehaviour
         transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0f, transform.localPosition.y, transform.localPosition.z), Time.deltaTime * recenterSpeed);
     }
 
-    void CheckIfLostBalance()
+    public bool BalancedOnRails()
     {
-        if (collidingRails.Count == 1)
+        return leftRailCounter > 0 && rightRailCounter > 0;
+    }
+
+    public void DetachFromPlayer()
+    {
+        if (gameObject.transform.parent == null) // already detached.
         {
-            gameObject.transform.SetParent(null);
-            Rigidbody rb = gameObject.AddComponent<Rigidbody>();
-            collidingRails.Clear();        
-            
-            if (!GameManager.Instance.PastFinishLine)
-            {
-                GameManager.Instance.GameOver();
-            }
+            return;
+        }
+
+        gameObject.transform.SetParent(null);
+        Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+        collidingRails.Clear();
+
+        if (!GameManager.Instance.PastFinishLine)
+        {
+            GameManager.Instance.GameOver();
         }
     }
 }

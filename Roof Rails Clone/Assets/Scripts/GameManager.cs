@@ -13,15 +13,14 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public bool PastFinishLine = false;
 
-    public PlayerMovement PlayerMovement;
-    public Pipe pipe;
+    public Player Player;
 
     public event Action OnGameOver;
     public event Action<int> OnGameWon;
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -36,32 +35,19 @@ public class GameManager : MonoBehaviour
     {
         IsGameRunning = true;
         PastFinishLine = false;
-        PlayerMovement.StartMoving();
+        Player.OnStart();
     }
 
     public void GameOver()
     {
-        EndGame();
+        IsGameRunning = false;
         OnGameOver?.Invoke();
     }
 
     public void WinGame(int multiplier)
     {
-        PlayerMovement.Stop();
-        EndGame();
-        OnGameWon?.Invoke(multiplier);
-    }
-    
-    private void EndGame()
-    {
-        PlayerMovement.enabled = false;
         IsGameRunning = false;
-        if (pipe.transform.parent != null)
-        {
-            pipe.transform.SetParent(null);
-            Rigidbody rb = pipe.gameObject.AddComponent<Rigidbody>();
-        }
-        Camera.main.GetComponent<CinemachineBrain>().enabled = false;
+        OnGameWon?.Invoke(multiplier);
     }
 
     public void RestartLevel()
