@@ -5,7 +5,6 @@ using UnityEngine;
 public class FaillingPlatform : MonoBehaviour
 {
     public GameObject Hole;
-    public GameObject Cover;
 
     private void OnTriggerEnter(Collider other)
     {

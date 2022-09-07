@@ -186,6 +186,9 @@ public class Pipe : MonoBehaviour
 
         gameObject.transform.SetParent(null);
         Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+        rb.AddForce(Vector3.up * 3f, ForceMode.Impulse);
         collidingRails.Clear();
 
         if (!GameManager.Instance.PastFinishLine)

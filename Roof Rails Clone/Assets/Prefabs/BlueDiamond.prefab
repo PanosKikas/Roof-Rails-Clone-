@@ -129,3 +129,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value: 1
+  CollectCanvasUI: {fileID: 91925570126561724, guid: 57bb757bf5c471344bb42e41efe377fd,
+    type: 3}

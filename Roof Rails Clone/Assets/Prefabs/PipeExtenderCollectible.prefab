@@ -109,6 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb665bc2be9492b4aa258c74e158664e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollectCanvasUI: {fileID: 3021560235045415153, guid: 728d52bf6eb584644910657e4f54691e,
+  CollectCanvasUI: {fileID: 3021560235045415152, guid: 728d52bf6eb584644910657e4f54691e,
     type: 3}
   CanvasOffset: 1

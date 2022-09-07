@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 
 public class PipeExtensionCollectible : MonoBehaviour
 {
-    public GameObject CollectCanvasUI;
+    public CollectCanvas CollectCanvasUI;
     public float CanvasOffset = 2.5f;
 
     private void OnTriggerEnter(Collider other)
@@ -14,7 +14,8 @@ public class PipeExtensionCollectible : MonoBehaviour
         {
             Pipe pipe = other.GetComponentInChildren<Pipe>();
             Assert.IsNotNull(pipe, "No pipe component found in player object.");
-            Instantiate(CollectCanvasUI, transform.position + Vector3.up * CanvasOffset, Quaternion.identity);
+            CollectCanvas canvasInstance = Instantiate<CollectCanvas>(CollectCanvasUI, transform.position + Vector3.up * CanvasOffset, Quaternion.identity);
+            canvasInstance.Animate("+1");
             pipe.Extend();
             Destroy(gameObject);
         }

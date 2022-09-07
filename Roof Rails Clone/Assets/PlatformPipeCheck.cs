@@ -9,6 +9,14 @@ public class PlatformPipeCheck : MonoBehaviour
         Pipe pipe = collision.collider.GetComponent<Pipe>();
         if (pipe)
         {
+            if (pipe.transform.parent == null)
+            {
+                return;
+            }
+
+            PlayerMovement playerMovement = pipe.gameObject.GetComponentInParent<PlayerMovement>();
+            playerMovement.Stop();
+
             pipe.DetachFromPlayer();
         }
     }

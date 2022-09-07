@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator = null;
 
-    private bool awaitingFirstTouch = true;
+    private bool stopped = true;
     private bool isSpeedLerping = false;
 
     [SerializeField]
@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
     public void StartMoving()
     {
         animator.SetFloat("MoveSpeed", 1);
-        awaitingFirstTouch = false;
+        stopped = false;
     }
 
     public void BoostSpeed(float targetSpeed)
@@ -68,15 +68,15 @@ public class PlayerMovement : MonoBehaviour
 
     public void Stop()
     {
-        awaitingFirstTouch = true;
-        rb.velocity = Vector3.zero;
-        rb.isKinematic = true;
+        stopped = true;
+        rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0f);
+        currentForwardSpeed = 0f;
         animator.SetFloat("MoveSpeed", 0f);
     }
 
     private void Update()
     {
-        if (awaitingFirstTouch)
+        if (stopped)
         {
             return;
         }
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (awaitingFirstTouch)
+        if (stopped)
         {
             return;
         }
