@@ -25,7 +25,8 @@ public class Pipe : MonoBehaviour
     private int leftRailCounter = 0;
     public PlayerMovement PlayerMovement;
 
-    public event Action OnExtensionCollected;
+    public event Action OnPipeExtended;
+    public event Action OnPipeCut;
 
     private void Awake()
     {
@@ -79,7 +80,7 @@ public class Pipe : MonoBehaviour
     public void Extend()
     {
         transform.localScale += Vector3.up * ExtensionAmount;
-        OnExtensionCollected?.Invoke();
+        OnPipeExtended?.Invoke();
     }
 
     public void Cut(Vector3 cutPoint, bool isRightCut)
@@ -132,6 +133,7 @@ public class Pipe : MonoBehaviour
         transform.position = newPos;
         transform.localScale = new Vector3(transform.localScale.x, remainingScaleY, transform.localScale.z);
         StartCoroutine(Recenter());
+        OnPipeCut?.Invoke();
     }
 
     IEnumerator Recenter()

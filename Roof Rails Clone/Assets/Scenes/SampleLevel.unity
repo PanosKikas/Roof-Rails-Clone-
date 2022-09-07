@@ -1634,6 +1634,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Saw (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6252646227757738017, guid: a771f28871307b442902234b224a345d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6252646227757738020, guid: a771f28871307b442902234b224a345d,
         type: 3}
       propertyPath: m_RootOrder
@@ -3461,7 +3466,7 @@ PrefabInstance:
     - target: {fileID: 6252646227757738017, guid: a771f28871307b442902234b224a345d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6252646227757738020, guid: a771f28871307b442902234b224a345d,
         type: 3}
@@ -4154,7 +4159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: -0.000000012768645, y: 5.4, z: -6.1200004}
+  m_FollowOffset: {x: -0.0000000130607365, y: 5.2200003, z: -6.2599998}
   m_XDamping: 20
   m_YDamping: 0
   m_ZDamping: 0
@@ -4254,7 +4259,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 70
+  field of view: 67.11999
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -4280,7 +4285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.2613991, y: 0.000000015677697, z: -0.0000000028861677, w: 0.9652308}
-  m_LocalPosition: {x: -1.4288228e-15, y: 5.37, z: -24.68}
+  m_LocalPosition: {x: -1.254517e-15, y: 5.19, z: -21.949999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5177,6 +5182,7 @@ GameObject:
   - component: {fileID: 1441057289}
   - component: {fileID: 1441057288}
   - component: {fileID: 1441057290}
+  - component: {fileID: 1441057291}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -5205,7 +5211,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1997954172195565}
   m_Lens:
-    FieldOfView: 70
+    FieldOfView: 67.11999
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -5227,7 +5233,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441057287}
   m_LocalRotation: {x: 0.2613991, y: 0.000000015677697, z: -0.0000000028861677, w: 0.9652308}
-  m_LocalPosition: {x: -1.4288228e-15, y: 5.37, z: -24.68}
+  m_LocalPosition: {x: -1.254517e-15, y: 5.19, z: -21.949999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 960747708}
@@ -5247,6 +5253,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xPosition: 0
+--- !u!114 &1441057291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441057287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f487a9e6a74995f4da8f7a892871b384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinFOV: 64
+  MaxFOV: 90
+  PipesToMax: 10
+  pipe: {fileID: 167520327}
+  MaxPipeLength: 4.1
 --- !u!4 &1515098797 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4150094315910650419, guid: a325f0b6b03e4ad4b9904ad4fb5995c9,
@@ -8043,6 +8066,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Saw
       objectReference: {fileID: 0}
+    - target: {fileID: 6252646227757738017, guid: a771f28871307b442902234b224a345d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6252646227757738020, guid: a771f28871307b442902234b224a345d,
         type: 3}
       propertyPath: m_RootOrder
@@ -8098,31 +8126,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6252646227757738022, guid: a771f28871307b442902234b224a345d,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 110
-      objectReference: {fileID: 0}
-    - target: {fileID: 6252646227757738022, guid: a771f28871307b442902234b224a345d,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6252646227757738022, guid: a771f28871307b442902234b224a345d,
-        type: 3}
-      propertyPath: m_CollisionDetection
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6252646227757738023, guid: a771f28871307b442902234b224a345d,
-        type: 3}
-      propertyPath: m_Convex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6252646227757738023, guid: a771f28871307b442902234b224a345d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a771f28871307b442902234b224a345d, type: 3}
 --- !u!1001 &7547077397090156988
@@ -8132,6 +8135,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 649779098, guid: 6578b2f333db9654e950e97c36d2cd57, type: 3}
+      propertyPath: ExtensionAmount
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7529671024620921347, guid: 6578b2f333db9654e950e97c36d2cd57,
         type: 3}
       propertyPath: m_CollisionDetection
@@ -8155,7 +8162,7 @@ PrefabInstance:
     - target: {fileID: 7544572881141738221, guid: 6578b2f333db9654e950e97c36d2cd57,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.56
+      value: -15.69
       objectReference: {fileID: 0}
     - target: {fileID: 7544572881141738221, guid: 6578b2f333db9654e950e97c36d2cd57,
         type: 3}
@@ -8196,6 +8203,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547077397716833834, guid: 6578b2f333db9654e950e97c36d2cd57,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 7547077397716833834, guid: 6578b2f333db9654e950e97c36d2cd57,
         type: 3}

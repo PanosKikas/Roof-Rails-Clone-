@@ -11,7 +11,7 @@ public class ExtensionCounter : MonoBehaviour
 
     private void Start()
     {
-        pipe.OnExtensionCollected += Increment;
+        pipe.OnPipeExtended += Increment;
     }
 
     public void Increment()

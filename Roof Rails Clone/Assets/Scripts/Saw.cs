@@ -5,12 +5,10 @@ using UnityEngine;
 public class Saw : MonoBehaviour
 {
     MeshRenderer meshRenderer;
-    Collider collider;
 
     private void Awake()
     {
         meshRenderer = GetComponentInChildren<MeshRenderer>();
-        collider = GetComponent<Collider>();
     }
 
     private void OnCollisionEnter(Collision collision)
