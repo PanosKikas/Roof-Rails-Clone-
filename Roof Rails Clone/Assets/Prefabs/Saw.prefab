@@ -100,7 +100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6252646227757738020
 Transform:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 110
-  m_CollisionDetection: 3
+  m_CollisionDetection: 0
 --- !u!64 &6252646227757738023
 MeshCollider:
   m_ObjectHideFlags: 0

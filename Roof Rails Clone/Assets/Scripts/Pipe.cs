@@ -172,11 +172,6 @@ public class Pipe : MonoBehaviour
         return leftRailCounter > 0 && rightRailCounter > 0;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log(collision.collider);
-    }
-
     public void DetachFromPlayer()
     {
         if (gameObject.transform.parent == null) // already detached.

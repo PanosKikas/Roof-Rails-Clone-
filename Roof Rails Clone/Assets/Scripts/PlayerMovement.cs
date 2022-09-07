@@ -69,9 +69,11 @@ public class PlayerMovement : MonoBehaviour
     public void Stop()
     {
         stopped = true;
-        rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0f);
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         currentForwardSpeed = 0f;
         animator.SetFloat("MoveSpeed", 0f);
+        pipe.DetachFromPlayer();
     }
 
     private void Update()

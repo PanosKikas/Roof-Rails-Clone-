@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2420207447104873842}
   - component: {fileID: 2420207447104873843}
   - component: {fileID: 570366269229172509}
-  - component: {fileID: 4042474460774296679}
+  - component: {fileID: 8283565261798970936}
   m_Layer: 9
   m_Name: Platform
   m_TagString: Ground
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4042474460774296679
+--- !u!114 &8283565261798970936
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,7 +139,6 @@ GameObject:
   - component: {fileID: 2420207447822836640}
   - component: {fileID: 2420207447822836641}
   - component: {fileID: 2420207447822836646}
-  - component: {fileID: 5328107193281845086}
   m_Layer: 9
   m_Name: Right Boundary
   m_TagString: Untagged
@@ -155,8 +154,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2420207447822836644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.482, y: 0.59, z: 0}
-  m_LocalScale: {x: 0.0370984, y: 0.17343213, z: 1}
+  m_LocalPosition: {x: 0.482, y: 0.54, z: 0}
+  m_LocalScale: {x: 0.0370984, y: 0.10124447, z: 1}
   m_Children: []
   m_Father: {fileID: 2420207447104873836}
   m_RootOrder: 0
@@ -223,18 +222,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5328107193281845086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2420207447822836644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db0cca5d23fb32e4a9c3495c90d7256f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2420207448344966223
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +234,6 @@ GameObject:
   - component: {fileID: 2420207448344966219}
   - component: {fileID: 2420207448344966216}
   - component: {fileID: 2420207448344966217}
-  - component: {fileID: 5116823967978958321}
   m_Layer: 9
   m_Name: Left Boundary
   m_TagString: Untagged
@@ -263,8 +249,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2420207448344966223}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.482, y: 0.59, z: 0}
-  m_LocalScale: {x: 0.0370984, y: 0.17343213, z: 1}
+  m_LocalPosition: {x: -0.482, y: 0.54, z: 0}
+  m_LocalScale: {x: 0.0370984, y: 0.10124447, z: 1}
   m_Children: []
   m_Father: {fileID: 2420207447104873836}
   m_RootOrder: 1
@@ -331,15 +317,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5116823967978958321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2420207448344966223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db0cca5d23fb32e4a9c3495c90d7256f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

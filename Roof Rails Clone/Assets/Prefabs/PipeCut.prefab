@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -4393722229081463044}
   m_Layer: 0
   m_Name: PipeCut
-  m_TagString: Pipe
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
