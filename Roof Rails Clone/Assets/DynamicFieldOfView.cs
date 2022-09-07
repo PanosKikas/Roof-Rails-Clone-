@@ -30,7 +30,6 @@ public class DynamicFieldOfView : MonoBehaviour
     private void Start()
     {
         targetFOV = MinFOV;
-        increments = (MaxFOV - MinFOV)/PipesToMax;
         pipe.OnPipeExtended += AdjustFOV;
         pipe.OnPipeCut += AdjustFOV;
         playerCam.m_Lens.FieldOfView = MinFOV;
