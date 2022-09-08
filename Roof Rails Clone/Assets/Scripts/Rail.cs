@@ -21,7 +21,10 @@ public class Rail : MonoBehaviour
         if (collision.collider.CompareTag("Player") && collision.collider.transform.position.y > transform.position.y)
         {
             Pipe childPipe = collision.collider.GetComponentInChildren<Pipe>();
-            childPipe.DetachFromPlayer();
+            if (childPipe)
+            {
+                childPipe.DetachFromPlayer();
+            }
         }
     }
 

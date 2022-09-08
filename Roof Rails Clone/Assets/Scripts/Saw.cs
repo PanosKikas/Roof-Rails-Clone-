@@ -28,9 +28,17 @@ public class Saw : MonoBehaviour
         if (pipe)
         {
             Transform playerTransform = pipe.GetComponentInParent<PlayerMovement>().transform;
-            bool rightCut = transform.position.x - playerTransform.position.x > 0;
+            bool rightCut = transform.position.x> playerTransform.position.x ? true : false;
             Vector3 collisionPoint = collision.collider.ClosestPoint(transform.position);
-            collisionPoint += Vector3.right * meshRenderer.bounds.extents.x;
+            if (rightCut)
+            {
+                collisionPoint -= Vector3.right * meshRenderer.bounds.extents.x;
+            }
+            else
+            {
+                collisionPoint += Vector3.right * meshRenderer.bounds.extents.x;
+            }
+
             pipe.Cut(collisionPoint, rightCut);
         }
     }

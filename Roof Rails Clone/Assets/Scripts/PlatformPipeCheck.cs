@@ -14,6 +14,7 @@ public class PlatformPipeCheck : MonoBehaviour
                 return;
             }
 
+            Debug.LogError("COLLIDED WITH " + this.gameObject);
             PlayerMovement playerMovement = pipe.gameObject.GetComponentInParent<PlayerMovement>();
             playerMovement.Stop();
 

@@ -28,6 +28,8 @@ public class Pipe : MonoBehaviour
     public event Action OnPipeExtended;
     public event Action OnPipeCut;
 
+    private float unbalancedCounterFrames = 0;
+
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
@@ -151,7 +153,16 @@ public class Pipe : MonoBehaviour
 
         if (collidingRails.Any() && !BalancedOnRails())
         {
-            DetachFromPlayer();
+            ++unbalancedCounterFrames;
+            if (unbalancedCounterFrames >= 15)
+            {
+                DetachFromPlayer();
+            }
+
+        }
+        else
+        {
+            unbalancedCounterFrames = 0;
         }
 
         if (!needRecenter)

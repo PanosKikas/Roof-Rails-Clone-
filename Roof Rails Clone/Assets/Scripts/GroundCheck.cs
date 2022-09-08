@@ -9,6 +9,7 @@ public class GroundCheck : MonoBehaviour
 
     public float TargetBoostSpeed = 5;
     private PlayerMovement playerMovement;
+    public LayerMask GroundLayerMask;
 
     private void Awake()
     {
