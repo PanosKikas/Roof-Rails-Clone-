@@ -10,7 +10,7 @@ public class CollectCanvas : MonoBehaviour
 
     public TextMeshProUGUI Text;
     public float TargetDistanceUp = 2.5f;
-    public float MovingUpDuration = .3f;
+    public float UpAnimationDuration = .3f;
     public float FadeDuration = .1f;
 
     private void Awake()
@@ -33,7 +33,7 @@ public class CollectCanvas : MonoBehaviour
     {
         Sequence mySequence = DOTween.Sequence();
         // Add a movement tween at the beginning
-        mySequence.Append(transform.DOMoveY(transform.position.y + TargetDistanceUp, MovingUpDuration));
+        mySequence.Append(transform.DOMoveY(transform.position.y + TargetDistanceUp, UpAnimationDuration));
         mySequence.Append(canvasGroup.DOFade(0, FadeDuration));
         mySequence.OnComplete(() => Destroy(gameObject));
         mySequence.Play();

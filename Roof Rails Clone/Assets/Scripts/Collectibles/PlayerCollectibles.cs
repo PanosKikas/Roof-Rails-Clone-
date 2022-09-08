@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCollectables
+public class PlayerCollectibles
 {
     public int Diamonds = 0;
 }

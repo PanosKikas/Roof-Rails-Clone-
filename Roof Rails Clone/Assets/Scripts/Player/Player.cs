@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement))]
 public class Player : MonoBehaviour
 {
-    private PlayerCollectables Collectables;
+    private PlayerCollectibles Collectables;
 
     public event Action<int> OnDiamondCollected;
 
@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     {
         // Normally the collectables would need to persist and saved on the phone
         // Here because we only have one level it is not needed.
-        Collectables = new PlayerCollectables();
+        Collectables = new PlayerCollectibles();
         playerMovement = GetComponent<PlayerMovement>();
     }
 
